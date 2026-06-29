@@ -1,6 +1,5 @@
 import 'package:_portfolio/__tools.dart';
 import 'package:_portfolio/__widgets.dart';
-import 'package:flutter/material.dart';
 
 class SkillCard extends StatefulWidget {
   final String title;

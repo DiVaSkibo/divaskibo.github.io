@@ -1,9 +1,5 @@
 import 'package:_portfolio/__tools.dart';
-import 'package:_portfolio/person_page.dart';
-import 'package:_portfolio/skill_page.dart';
-import 'package:_portfolio/experience_page.dart';
-import 'package:_portfolio/project_page.dart';
-import 'package:flutter/material.dart';
+import 'package:_portfolio/rooter.dart';
 
 void main() => runApp(const App());
 
@@ -25,12 +21,10 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: '/person',
+      initialRoute: '/kid',
       routes: {
-        '/person': (context) => const CardPage(),
-        '/skills': (context) => const SkillPage(),
-        '/experience': (context) => const ExperiencePage(),
-        '/projects': (context) => const ProjectPage(),
+        '/kid': (context) => const Rooter(),
+        '/retiree': (context) => const Rooter(),
       },
     );
   }

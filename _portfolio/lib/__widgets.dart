@@ -1,5 +1,4 @@
 import 'package:_portfolio/__tools.dart';
-import 'package:flutter/material.dart';
 
 const Divider dividerMain = Divider(thickness: 2, color: ColorsTool.mainShade);
 const Divider dividerMainShade = Divider(thickness: 2, color: ColorsTool.main);

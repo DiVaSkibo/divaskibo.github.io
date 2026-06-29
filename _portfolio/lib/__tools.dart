@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+export 'package:flutter/material.dart';
 
 enum ToDirections { start, end }
 
@@ -11,6 +12,21 @@ enum Level {
   expert,
   fluent,
   guru,
+}
+
+enum Pages {
+  person,
+  skills,
+  experience,
+  projects;
+
+  String get label => name;
+  IconData get icon => switch (this) {
+    person => Icons.accessibility_new,
+    skills => Icons.sports_gymnastics,
+    experience => Icons.self_improvement,
+    projects => Icons.sports_handball,
+  };
 }
 
 final class ColorsTool {

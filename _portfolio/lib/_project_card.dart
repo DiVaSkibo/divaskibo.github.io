@@ -1,6 +1,5 @@
 import 'package:_portfolio/__tools.dart';
 import 'package:_portfolio/__widgets.dart';
-import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProjectCard extends StatefulWidget {
