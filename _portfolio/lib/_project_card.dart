@@ -48,7 +48,7 @@ class _ProjectCardState extends State<ProjectCard> {
         width: 1000,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: ColorsTool.main,
+          color: Colours.main,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,10 +68,10 @@ class _ProjectCardState extends State<ProjectCard> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(widget.title, style: StyleTool.header),
+                      Text(widget.title, style: Styles.header),
                       if (screenshots.isNotEmpty)
                         ScrollListView.shots(children: screenshots),
-                      //if (links != null) Text(links, style: StyleTool.note),
+                      //if (links != null) Text(links, style: Styles.note),
                       if (uris.isNotEmpty)
                         Row(
                           spacing: 30,
@@ -80,7 +80,7 @@ class _ProjectCardState extends State<ProjectCard> {
                             (index) => InkWell(
                               child: Text(
                                 uris[index]['text'],
-                                style: StyleTool.note,
+                                style: Styles.note,
                               ),
                               onTap: () => launchUrl(uris[index]['link']),
                             ),
@@ -91,7 +91,7 @@ class _ProjectCardState extends State<ProjectCard> {
                 ),
               ],
             ),
-            Text(widget.body, style: StyleTool.description),
+            Text(widget.body, style: Styles.description),
           ],
         ),
       ),

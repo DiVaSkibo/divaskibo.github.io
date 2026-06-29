@@ -26,7 +26,7 @@ class _RooterState extends State<Rooter> {
       },
       bottomNavigationBar: FloatyNavBar(
         selectedTab: _currentPage.index,
-        backgroundColor: ColorsTool.mainShade,
+        backgroundColor: Colours.mainShade,
         tabs: [
           for (final page in Pages.values)
             FloatyTab(

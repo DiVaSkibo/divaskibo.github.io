@@ -31,12 +31,12 @@ class _EventCardState extends State<EventCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Marker.event(child: Text(widget.event, style: StyleTool.header)),
+          Marker.event(child: Text(widget.event, style: Styles.header)),
           dividerMainShade,
           Row(
             children: [
               SizedBox(width: 18),
-              Text(widget.role, style: StyleTool.note),
+              Text(widget.role, style: Styles.note),
             ],
           ),
           SizedBox(height: 18),

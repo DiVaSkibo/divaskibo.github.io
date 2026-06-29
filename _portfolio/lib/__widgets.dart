@@ -1,7 +1,7 @@
 import 'package:_portfolio/__tools.dart';
 
-const Divider dividerMain = Divider(thickness: 2, color: ColorsTool.mainShade);
-const Divider dividerMainShade = Divider(thickness: 2, color: ColorsTool.main);
+const Divider dividerMain = Divider(thickness: 2, color: Colours.mainShade);
+const Divider dividerMainShade = Divider(thickness: 2, color: Colours.main);
 
 class LevelStatus extends StatefulWidget {
   final Level level;
@@ -19,9 +19,9 @@ class _LevelStatusState extends State<LevelStatus> {
       padding: EdgeInsetsGeometry.symmetric(horizontal: 10, vertical: 1),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
-        color: ColorsTool.mainShade,
+        color: Colours.mainShade,
       ),
-      child: TextTool.level[widget.level],
+      child: Text(widget.level.label, style: Styles.statusText(widget.level)),
     );
   }
 }
@@ -69,12 +69,12 @@ class Marker extends StatefulWidget {
   const Marker.circle({super.key, required this.child})
     : marker = Icons.circle,
       size = 8,
-      color = ColorsTool.main,
+      color = Colours.main,
       offsetHorizontal = 1;
   const Marker.event({super.key, required this.child})
     : marker = Icons.bookmark,
       size = 36,
-      color = ColorsTool.accent,
+      color = Colours.accent,
       offsetHorizontal = 0;
 
   @override

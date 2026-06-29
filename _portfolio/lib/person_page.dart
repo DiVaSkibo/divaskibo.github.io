@@ -52,12 +52,12 @@ class _CardPageState extends State<CardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsTool.mainShade,
+      backgroundColor: Colours.mainShade,
       appBar: AppBar(
-        backgroundColor: ColorsTool.main,
+        backgroundColor: Colours.main,
         leading: IconButton(
           onPressed: () => {},
-          icon: Icon(Icons.accessibility, size: 36, color: ColorsTool.accent),
+          icon: Icon(Icons.accessibility, size: 36, color: Colours.accent),
         ),
         title: Row(
           spacing: 27,
@@ -111,13 +111,13 @@ class _CardPageState extends State<CardPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => {},
-        backgroundColor: ColorsTool.accent,
+        backgroundColor: Colours.accent,
         shape: CircleBorder(),
         child: Center(
           child: Icon(
             Icons.arrow_drop_up,
             size: 54,
-            color: ColorsTool.accentShade,
+            color: Colours.accentShade,
           ),
         ),
       ),

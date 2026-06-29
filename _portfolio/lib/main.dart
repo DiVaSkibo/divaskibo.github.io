@@ -11,13 +11,13 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: ColorsTool.mainShade,
+        scaffoldBackgroundColor: Colours.mainShade,
         brightness: Brightness.dark,
-        textTheme: TextTheme(bodyMedium: StyleTool.basic),
+        textTheme: TextTheme(bodyMedium: Styles.basic),
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
             foregroundColor: Colors.white,
-            textStyle: StyleTool.buttonText,
+            textStyle: Styles.buttonText,
           ),
         ),
       ),

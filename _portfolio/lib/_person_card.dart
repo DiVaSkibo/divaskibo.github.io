@@ -39,7 +39,7 @@ class _PersonCardState extends State<PersonCard> {
         width: 1000,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: ColorsTool.main,
+          color: Colours.main,
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +64,7 @@ class _PersonCardState extends State<PersonCard> {
                     children: List.generate(
                       uris.length,
                       (index) => InkWell(
-                        child: Text(uris[index]['text'], style: StyleTool.note),
+                        child: Text(uris[index]['text'], style: Styles.note),
                         onTap: () => launchUrl(uris[index]['link']),
                       ),
                     ),
@@ -77,7 +77,7 @@ class _PersonCardState extends State<PersonCard> {
                 children: [
                   Text(
                     widget.title,
-                    style: StyleTool.header,
+                    style: Styles.header,
                     textAlign: TextAlign.left,
                   ),
                   dividerMain,

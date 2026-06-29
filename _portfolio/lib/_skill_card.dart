@@ -19,12 +19,12 @@ class _SkillCardState extends State<SkillCard> {
       width: 333,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: ColorsTool.main,
+        color: Colours.main,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(widget.title, style: StyleTool.header),
+          Text(widget.title, style: Styles.header),
           dividerMain,
           Column(spacing: 9, children: widget.body),
         ],
