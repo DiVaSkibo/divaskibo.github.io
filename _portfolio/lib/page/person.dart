@@ -1,5 +1,5 @@
-import 'package:_portfolio/__tools.dart';
-import 'package:_portfolio/_person_card.dart';
+import 'package:_portfolio/tools.dart';
+import 'package:_portfolio/widget/cards.dart';
 
 class PersonPage extends StatelessWidget {
   const PersonPage({super.key});

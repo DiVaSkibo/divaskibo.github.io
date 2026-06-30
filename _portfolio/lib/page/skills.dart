@@ -1,5 +1,5 @@
-import 'package:_portfolio/__tools.dart';
-import 'package:_portfolio/_skill_card.dart';
+import 'package:_portfolio/tools.dart';
+import 'package:_portfolio/widget/cards.dart';
 
 class SkillsPage extends StatelessWidget {
   const SkillsPage({super.key});

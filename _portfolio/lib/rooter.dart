@@ -1,9 +1,6 @@
 import 'package:floaty_nav_bar/floaty_nav_bar.dart';
-import 'package:_portfolio/__tools.dart';
-import 'package:_portfolio/person_page.dart';
-import 'package:_portfolio/skill_page.dart';
-import 'package:_portfolio/experience_page.dart';
-import 'package:_portfolio/project_page.dart';
+import 'package:_portfolio/tools.dart';
+import 'package:_portfolio/_pages.dart';
 
 class Rooter extends StatefulWidget {
   const Rooter({super.key});
