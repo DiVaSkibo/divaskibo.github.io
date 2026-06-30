@@ -35,7 +35,7 @@ enum Level {
   };
 }
 
-enum Pages {
+enum CVPage {
   person,
   skills,
   experience,

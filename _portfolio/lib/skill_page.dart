@@ -1,7 +1,5 @@
 import 'package:_portfolio/__tools.dart';
-import 'package:_portfolio/__widgets.dart';
 import 'package:_portfolio/_skill_card.dart';
-import 'package:flutter/material.dart';
 
 class SkillsPage extends StatelessWidget {
   const SkillsPage({super.key});
@@ -17,55 +15,55 @@ class SkillsPage extends StatelessWidget {
             spacing: 36,
             runSpacing: 36,
             children: [
-              SkillCard(
+              SkillsCard(
                 title: 'Hard skills :',
-                body: [
-                  Attribute(text: 'C++', level: Level.expert),
-                  Attribute(text: 'C#', level: Level.intermediate),
-                  Attribute(text: 'Python', level: Level.advanced),
-                  Attribute(text: 'Swift', level: Level.beginner),
-                  Attribute(text: 'Kotlin', level: Level.beginner),
-                  Attribute(text: 'HTML', level: Level.advanced),
-                  Attribute(text: 'CSS', level: Level.advanced),
-                  Attribute(text: 'JavaScript', level: Level.intermediate),
-                  Attribute(text: 'Dart', level: Level.advanced),
-                  Attribute(text: 'Flutter', level: Level.advanced),
-                  Attribute(text: 'GodotScript', level: Level.expert),
-                  Attribute(text: 'Git', level: Level.advanced),
-                ],
+                skills: {
+                  'C++': Level.expert,
+                  'C#': Level.intermediate,
+                  'Python': Level.advanced,
+                  'Swift': Level.beginner,
+                  'Kotlin': Level.beginner,
+                  'HTML': Level.advanced,
+                  'CSS': Level.advanced,
+                  'JavaScript': Level.intermediate,
+                  'Dart': Level.advanced,
+                  'Flutter': Level.advanced,
+                  'GodotScript': Level.expert,
+                  'Git': Level.advanced,
+                },
               ),
-              SkillCard(
+              SkillsCard(
                 title: 'Soft skills :',
-                body: [
-                  Attribute(text: 'Creativity'),
-                  Attribute(text: 'Problem-solving'),
-                  Attribute(text: 'Teamwork'),
-                  Attribute(text: 'Leadership'),
-                  Attribute(text: 'Communication'),
-                  Attribute(text: 'Attention to Detail'),
-                  Attribute(text: 'Adaptability'),
-                ],
+                skills: {
+                  'Creativity': null,
+                  'Problem-solving': null,
+                  'Teamwork': null,
+                  'Leadership': null,
+                  'Communication': null,
+                  'Attention to Detail': null,
+                  'Adaptability': null,
+                },
               ),
-              SkillCard(
+              SkillsCard(
                 title: 'Languages :',
-                body: [
-                  Attribute(text: 'Ukrainian', level: Level.fluent),
-                  Attribute(text: 'English', level: Level.intermediate),
-                  Attribute(text: 'Russian', level: Level.upperIntermediate),
-                  Attribute(text: 'Polish', level: Level.intermediate),
-                ],
+                skills: {
+                  'Ukrainian': Level.fluent,
+                  'English': Level.intermediate,
+                  'Russian': Level.upperIntermediate,
+                  'Polish': Level.intermediate,
+                },
               ),
-              SkillCard(
+              SkillsCard(
                 title: 'Tools :',
-                body: [
-                  Attribute(text: 'Miro'),
-                  Attribute(text: 'Figma'),
-                  Attribute(text: 'Krita'),
-                  Attribute(text: 'GitHub'),
-                  Attribute(text: 'GodotEngine'),
-                  Attribute(text: 'Visual Studio Code'),
-                  Attribute(text: 'FL Studio'),
-                ],
+                skills: {
+                  'Miro': null,
+                  'Figma': null,
+                  'Krita': null,
+                  'GitHub': null,
+                  'GodotEngine': null,
+                  'Visual Studio Code': null,
+                  'FL Studio': null,
+                },
               ),
             ],
           ),

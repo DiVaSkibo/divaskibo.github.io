@@ -1,32 +1,34 @@
 import 'package:_portfolio/__tools.dart';
 import 'package:_portfolio/__widgets.dart';
 
-class SkillCard extends StatefulWidget {
+class SkillsCard extends StatelessWidget {
   final String title;
-  final List<Attribute> body;
+  final Map<String, Level?> skills;
 
-  const SkillCard({super.key, required this.title, required this.body});
+  const SkillsCard({super.key, required this.title, required this.skills});
 
-  @override
-  State<SkillCard> createState() => _SkillCardState();
-}
-
-class _SkillCardState extends State<SkillCard> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsetsGeometry.all(36),
-      width: 333,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: Colours.main,
-      ),
+    return buildCard(
+      width: 333.0,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(widget.title, style: Styles.header),
+          Text(title, style: Styles.header),
           dividerMain,
-          Column(spacing: 9, children: widget.body),
+          Column(
+            spacing: 9,
+            children: [
+              for (final skill in skills.entries)
+                Row(
+                  children: [
+                    Text(skill.key),
+                    const Spacer(),
+                    if (skill.value != null) buildLevel(skill.value!),
+                  ],
+                ),
+            ],
+          ),
         ],
       ),
     );

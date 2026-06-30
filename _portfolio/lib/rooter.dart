@@ -13,22 +13,23 @@ class Rooter extends StatefulWidget {
 }
 
 class _RooterState extends State<Rooter> {
-  Pages _currentPage = Pages.person;
+  CVPage _currentPage = CVPage.person;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: switch (_currentPage) {
-        Pages.person => const PersonPage(),
-        Pages.skills => const SkillsPage(),
-        Pages.experience => const ExperiencePage(),
-        Pages.projects => const ProjectsPage(),
+        CVPage.person => const PersonPage(),
+        CVPage.skills => const SkillsPage(),
+        CVPage.experience => const ExperiencePage(),
+        CVPage.projects => const ProjectsPage(),
       },
       bottomNavigationBar: FloatyNavBar(
+        height: 50.0,
         selectedTab: _currentPage.index,
         backgroundColor: Colours.mainShade,
         tabs: [
-          for (final page in Pages.values)
+          for (final page in CVPage.values)
             FloatyTab(
               isSelected: _currentPage == page,
               title: page.label,
@@ -38,6 +39,10 @@ class _RooterState extends State<Rooter> {
               },
             ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton.small(
+        onPressed: () => setState(() {}),
+        child: const Icon(Icons.theater_comedy),
       ),
     );
   }

@@ -43,13 +43,8 @@ class _ProjectCardState extends State<ProjectCard> {
       }
     }
     return SingleChildScrollView(
-      child: Container(
-        padding: EdgeInsetsGeometry.all(36),
-        width: 1000,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Colours.main,
-        ),
+      child: buildCard(
+        width: 1000.0,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

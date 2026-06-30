@@ -3,52 +3,24 @@ import 'package:_portfolio/__tools.dart';
 const Divider dividerMain = Divider(thickness: 2, color: Colours.mainShade);
 const Divider dividerMainShade = Divider(thickness: 2, color: Colours.main);
 
-class LevelStatus extends StatefulWidget {
-  final Level level;
+Widget buildCard({double? width, required Widget child}) => Container(
+  padding: const EdgeInsetsGeometry.all(36.0),
+  width: width,
+  decoration: const BoxDecoration(
+    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+    color: Colours.main,
+  ),
+  child: child,
+);
 
-  const LevelStatus({super.key, required this.level});
-
-  @override
-  State<LevelStatus> createState() => _LevelStatusState();
-}
-
-class _LevelStatusState extends State<LevelStatus> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsetsGeometry.symmetric(horizontal: 10, vertical: 1),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
-        color: Colours.mainShade,
-      ),
-      child: Text(widget.level.label, style: Styles.statusText(widget.level)),
-    );
-  }
-}
-
-class Attribute extends StatefulWidget {
-  final String text;
-  final Level? level;
-
-  const Attribute({super.key, required this.text, this.level});
-
-  @override
-  State<Attribute> createState() => _AttributeState();
-}
-
-class _AttributeState extends State<Attribute> {
-  @override
-  Widget build(BuildContext context) {
-    final Level? level = widget.level;
-    return Row(
-      children: [
-        Text(widget.text),
-        if (level != null) Spacer(),
-        if (level != null) LevelStatus(level: level),
-      ],
-    );
-  }
-}
+Widget buildLevel(Level level) => Container(
+  padding: EdgeInsetsGeometry.symmetric(horizontal: 10, vertical: 1),
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(18),
+    color: Colours.mainShade,
+  ),
+  child: Text(level.label, style: Styles.statusText(level)),
+);
 
 class Marker extends StatefulWidget {
   final IconData marker;
