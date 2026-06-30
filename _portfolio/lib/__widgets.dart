@@ -1,8 +1,5 @@
 import 'package:_portfolio/__tools.dart';
 
-const Divider dividerMain = Divider(thickness: 2, color: Colours.mainShade);
-const Divider dividerMainShade = Divider(thickness: 2, color: Colours.main);
-
 Widget buildCard({double? width, required Widget child}) => Container(
   padding: const EdgeInsetsGeometry.all(36.0),
   width: width,
@@ -19,7 +16,10 @@ Widget buildLevel(Level level) => Container(
     borderRadius: BorderRadius.circular(18),
     color: Colours.mainShade,
   ),
-  child: Text(level.label, style: Styles.statusText(level)),
+  child: Text(
+    level.label,
+    style: TextStyle(fontFamily: Fonts.caps, fontSize: 12, color: level.colour),
+  ),
 );
 
 class Marker extends StatefulWidget {
@@ -68,14 +68,16 @@ class _MarkerState extends State<Marker> {
   }
 }
 
-class ScrollListView extends StatefulWidget {
+class GalleryView extends StatelessWidget {
   final Axis scrollAxis;
   final List<Widget> children;
   final double scrollDistance;
   final Duration scrollDuration;
   final Curve scrollCurve;
 
-  const ScrollListView({
+  final _scrollController = ScrollController();
+
+  GalleryView({
     super.key,
     required this.scrollAxis,
     required this.children,
@@ -83,41 +85,29 @@ class ScrollListView extends StatefulWidget {
     required this.scrollDuration,
     required this.scrollCurve,
   });
-  const ScrollListView.shots({super.key, required this.children})
+  GalleryView.shots({super.key, required this.children})
     : scrollAxis = Axis.horizontal,
       scrollDistance = 381,
       scrollDuration = Durations.medium3,
       scrollCurve = Curves.easeOut;
 
   @override
-  State<ScrollListView> createState() => _ScrollListViewState();
-}
-
-class _ScrollListViewState extends State<ScrollListView> {
-  final _scrollController = ScrollController();
-
-  @override
   Widget build(BuildContext context) {
-    final children = widget.children;
-    final scrollDuration = widget.scrollDuration;
-    final scrollCurve = widget.scrollCurve;
-    Future<void> scroll(ToDirections direction) => _scrollController.animateTo(
-      _scrollController.position.pixels +
-          widget.scrollDistance * (direction == ToDirections.end ? 1 : -1),
-      duration: scrollDuration,
-      curve: scrollCurve,
-    );
     final childrenScrollListView = [
       if (children.length >= 3)
         IconButton(
           onPressed: () {
             if (_scrollController.position.pixels >=
                 _scrollController.position.minScrollExtent) {
-              scroll(ToDirections.start);
+              _scrollController.animateTo(
+                _scrollController.position.pixels - scrollDistance,
+                duration: scrollDuration,
+                curve: scrollCurve,
+              );
             }
           },
           icon: Icon(
-            widget.scrollAxis == Axis.horizontal
+            scrollAxis == Axis.horizontal
                 ? Icons.arrow_left
                 : Icons.arrow_drop_up,
           ),
@@ -141,17 +131,21 @@ class _ScrollListViewState extends State<ScrollListView> {
           onPressed: () {
             if (_scrollController.position.pixels <=
                 _scrollController.position.maxScrollExtent) {
-              scroll(ToDirections.end);
+              _scrollController.animateTo(
+                _scrollController.position.pixels + scrollDistance,
+                duration: scrollDuration,
+                curve: scrollCurve,
+              );
             }
           },
           icon: Icon(
-            widget.scrollAxis == Axis.horizontal
+            scrollAxis == Axis.horizontal
                 ? Icons.arrow_right
                 : Icons.arrow_drop_down,
           ),
         ),
     ];
-    return widget.scrollAxis == Axis.horizontal
+    return scrollAxis == Axis.horizontal
         ? Row(children: childrenScrollListView)
         : Column(children: childrenScrollListView);
   }

@@ -10,12 +10,12 @@ class SkillsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return buildCard(
-      width: 333.0,
+      width: 369.0,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(title, style: Styles.header),
-          dividerMain,
+          const Divider(color: Colours.main),
           Column(
             spacing: 9,
             children: [

@@ -11,15 +11,11 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: Colours.mainShade,
         brightness: Brightness.dark,
-        textTheme: TextTheme(bodyMedium: Styles.basic),
-        textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(
-            foregroundColor: Colors.white,
-            textStyle: Styles.buttonText,
-          ),
-        ),
+        fontFamily: Fonts.basic,
+        scaffoldBackgroundColor: Colours.mainShade,
+        textTheme: const TextTheme(bodyMedium: Styles.basic),
+        dividerTheme: const DividerThemeData(thickness: 2, color: Colours.main),
       ),
       initialRoute: '/kid',
       routes: {

@@ -32,7 +32,7 @@ class _EventCardState extends State<EventCard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Marker.event(child: Text(widget.event, style: Styles.header)),
-          dividerMainShade,
+          const Divider(color: Colours.mainShade),
           Row(
             children: [
               SizedBox(width: 18),

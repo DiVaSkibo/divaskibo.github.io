@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 export 'package:flutter/material.dart';
 
-enum ToDirections { start, end }
-
 enum Level {
   beginner,
   elementary,
@@ -50,6 +48,12 @@ enum CVPage {
   };
 }
 
+final class Fonts {
+  static const String basic = 'Rubik';
+  static const String caps = 'Rubik Mono One';
+  static const String shadow = 'Rubik Doodle Shadow';
+}
+
 final class Colours {
   static const Color main = Color(0xFF35225C);
   static const Color mainShade = Color(0xFF241345);
@@ -69,31 +73,28 @@ final class Colours {
 
 final class Styles {
   static const TextStyle basic = TextStyle(
-    fontWeight: FontWeight.w400,
+    fontFamily: Fonts.basic,
+    fontWeight: FontWeight.w500,
     fontSize: 18,
   );
   static const TextStyle header = TextStyle(
-    fontWeight: FontWeight.w600,
+    fontFamily: Fonts.shadow,
     fontSize: 36,
   );
   static const TextStyle description = TextStyle(
+    fontFamily: Fonts.basic,
     fontWeight: FontWeight.w300,
     fontSize: 15,
   );
   static const TextStyle note = TextStyle(
+    fontFamily: Fonts.basic,
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.italic,
     color: Colours.notation,
   );
   static const TextStyle buttonText = TextStyle(
+    fontFamily: Fonts.basic,
     fontWeight: FontWeight.w300,
     fontSize: 18,
-  );
-
-  static TextStyle statusText(Level level) => TextStyle(
-    fontSize: 13,
-    fontWeight: FontWeight.w600,
-    fontStyle: FontStyle.italic,
-    color: level.colour,
   );
 }

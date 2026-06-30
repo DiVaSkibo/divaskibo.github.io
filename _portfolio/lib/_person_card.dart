@@ -75,7 +75,7 @@ class _PersonCardState extends State<PersonCard> {
                     style: Styles.header,
                     textAlign: TextAlign.left,
                   ),
-                  dividerMain,
+                  const Divider(),
                   Text(widget.body),
                 ],
               ),

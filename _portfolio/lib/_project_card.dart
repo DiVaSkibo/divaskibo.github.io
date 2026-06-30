@@ -65,7 +65,7 @@ class _ProjectCardState extends State<ProjectCard> {
                     children: [
                       Text(widget.title, style: Styles.header),
                       if (screenshots.isNotEmpty)
-                        ScrollListView.shots(children: screenshots),
+                        GalleryView.shots(children: screenshots),
                       //if (links != null) Text(links, style: Styles.note),
                       if (uris.isNotEmpty)
                         Row(
