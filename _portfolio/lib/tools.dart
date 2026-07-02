@@ -48,6 +48,28 @@ enum CVPage {
   };
 }
 
+enum Linktype {
+  email,
+  telegram,
+  linkedin,
+  discord,
+  github,
+  itch,
+  music,
+  cosmos;
+
+  IconData get icon => switch (this) {
+    email => Icons.email,
+    telegram => Icons.telegram,
+    linkedin => Icons.info,
+    discord => Icons.discord,
+    github => Icons.commit,
+    itch => Icons.sports_esports,
+    music => Icons.music_note,
+    cosmos => Icons.auto_awesome,
+  };
+}
+
 abstract final class Fonts {
   static const String basic = 'Rubik';
   static const String caps = 'Rubik Mono One';
@@ -88,7 +110,7 @@ abstract final class Styles {
   );
   static const TextStyle header = TextStyle(
     fontFamily: Fonts.shadow,
-    fontSize: 36,
+    fontSize: 45,
   );
   static const TextStyle description = TextStyle(
     fontFamily: Fonts.basic,

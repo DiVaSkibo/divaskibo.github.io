@@ -1,74 +1,112 @@
+import 'dart:math';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:_portfolio/tools.dart';
 import 'package:_portfolio/widget/basics.dart';
 
 class PersonCard extends StatelessWidget {
-  final String title;
-  final String body;
-  final String image;
+  final String name;
+  final String avatar;
+  final String about;
   final String? info;
-  final Map<String, String>? links;
+  final Map<Linktype, String>? links;
 
   const PersonCard({
     super.key,
-    required this.title,
-    required this.body,
-    required this.image,
+    required this.name,
+    required this.avatar,
+    required this.about,
     this.info,
     this.links,
   });
 
+  Widget _buildName() => SelectableText(name, style: Styles.header);
+  Widget _buildAvatar() => ClipRRect(
+    borderRadius: const BorderRadius.all(Radius.circular(9.0)),
+    child: Image.asset(avatar),
+  );
+  Widget _buildAbout() => SelectableText(about);
+  Widget? _buildInfo() => info != null
+      ? SelectableText(info!, style: Styles.note, textAlign: TextAlign.end)
+      : null;
+  Widget? _buildLinks() => links != null
+      ? Column(
+          verticalDirection: VerticalDirection.up,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            if (links != null &&
+                links!.entries
+                    .where((entry) => !entry.value.contains('https://'))
+                    .isNotEmpty)
+              Wrap(
+                crossAxisAlignment: WrapCrossAlignment.center,
+                alignment: WrapAlignment.end,
+                runAlignment: WrapAlignment.end,
+                children: [
+                  for (final link in links!.entries.where(
+                    (entry) => !entry.value.contains('https://'),
+                  ))
+                    IconButton(
+                      icon: Icon(link.key.icon),
+                      onPressed: () =>
+                          Clipboard.setData(ClipboardData(text: link.value)),
+                    ),
+                ],
+              ),
+            if (links != null &&
+                links!.entries
+                    .where((entry) => entry.value.contains('https://'))
+                    .isNotEmpty)
+              Wrap(
+                crossAxisAlignment: WrapCrossAlignment.center,
+                alignment: WrapAlignment.end,
+                runAlignment: WrapAlignment.end,
+                children: [
+                  for (final link in links!.entries.where(
+                    (entry) => entry.value.contains('https://'),
+                  ))
+                    IconButton(
+                      icon: Icon(link.key.icon),
+                      onPressed: () => launchUrl(Uri.parse(link.value)),
+                    ),
+                ],
+              ),
+          ],
+        )
+      : null;
+
   @override
   Widget build(BuildContext context) {
-    final List<Map> uris = [];
-    if (links != null) {
-      for (final String key in links!.keys) {
-        uris.add({'text': key, 'link': Uri.parse(links![key]!)});
-      }
-    }
     return SingleChildScrollView(
       child: SizedBox(
-        width: 1000.0,
+        width: min<double>(MediaQuery.of(context).size.width - 72.0, 1000.0),
         child: ExpansionTile(
           initiallyExpanded: true,
           maintainState: false,
           showTrailingIcon: false,
           title: const SizedBox.shrink(),
           subtitle: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             spacing: 36,
             children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(9.0)),
-                child: Image.asset(image, width: 147.0),
-              ),
-              Text(title, style: Styles.header),
+              Expanded(flex: 1, child: _buildAvatar()),
+              Expanded(flex: 3, child: _buildName()),
             ],
           ),
           children: [
             const Divider(),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               spacing: 36,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  spacing: 21,
-                  children: [
-                    if (info != null) Text(info!, textAlign: TextAlign.end),
-                    if (uris.isNotEmpty)
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          for (final uri in uris)
-                            InkWell(
-                              child: Text(uri['text'], style: Styles.note),
-                              onTap: () => launchUrl(uri['link']),
-                            ),
-                        ],
-                      ),
-                  ],
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    spacing: 21,
+                    children: [?_buildInfo(), ?_buildLinks()],
+                  ),
                 ),
-                Expanded(child: Text(body)),
+                Expanded(flex: 3, child: _buildAbout()),
               ],
             ),
           ],

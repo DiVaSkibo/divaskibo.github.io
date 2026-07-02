@@ -14,24 +14,28 @@ class PersonPage extends StatelessWidget {
             spacing: 36,
             children: [
               PersonCard(
-                title: 'Dmytro SKIBO',
-                body:
+                name: 'Dmytro SKIBO',
+                avatar: 'assets/image/avatar/Me.jpg',
+                about:
                     'Learn Computer Science in National Aerospace University - Kharkiv Aviation Institute. Faculty of Intelligent Control Systems. Department of Mathematical Modelling and Artificial Intelligence. I receive an increased scholarship for my high GPA in the student rankings.',
-                image: 'assets/image/avatar/Me.jpg',
                 info: '16.12.2004\nKharkiv, Ukraine',
                 links: {
-                  '+380 66 727 4718': '+380 66 727 4718',
-                  'pipaski0264@gmail.com': 'pipaski0264@gmail.com',
-                  'https://t.me/Zlo_Ol2': 'https://t.me/Zlo_Ol2',
+                  Linktype.email: 'pipaski0264@gmail.com',
+                  Linktype.telegram: 'https://t.me/Zlo_Ol2',
+                  Linktype.linkedin:
+                      'https://www.linkedin.com/in/dmytro-skibo-61a2233ba/',
+                  Linktype.github: 'https://github.com/DiVaSkibo',
+                  Linktype.itch: 'https://em-o-ja.itch.io/',
                 },
               ),
               PersonCard(
-                title: 'Oie gentil',
-                body: 'Member of the Gentlegoose team.',
-                image: 'assets/image/avatar/My.jpg',
+                name: 'Oie gentil',
+                avatar: 'assets/image/avatar/My.jpg',
+                about: 'Member of the Gentlegoose team.',
                 links: {
-                  'link':
-                      'https://www.youtube.com/@dunkelbahn7022\nhttps://www.youtube.com/@zlo_ol2',
+                  Linktype.discord: '.empireofjapan',
+                  Linktype.music: 'https://music.youtube.com/@zlo_ol2',
+                  Linktype.cosmos: 'https://www.cosmos.so/oiegentil',
                 },
               ),
             ],

@@ -50,6 +50,13 @@ class _AppState extends State<App> with SingleTickerProviderStateMixin {
           thickness: 2,
           color: _kid ? Colours.mainShadeKid : Colours.mainShade,
         ),
+        iconButtonTheme: IconButtonThemeData(
+          style: ButtonStyle(
+            iconColor: WidgetStatePropertyAll(
+              _kid ? Colours.accentKid : Colours.accent,
+            ),
+          ),
+        ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: _kid ? Colours.mainShadeKid : Colours.mainShade,
           foregroundColor: _kid ? Colours.accentKid : Colours.accent,
