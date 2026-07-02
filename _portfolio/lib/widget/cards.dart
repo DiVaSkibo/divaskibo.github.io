@@ -2,7 +2,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:_portfolio/tools.dart';
 import 'package:_portfolio/widget/basics.dart';
 
-class PersonCard extends StatefulWidget {
+class PersonCard extends StatelessWidget {
   final String title;
   final String body;
   final String image;
@@ -19,66 +19,57 @@ class PersonCard extends StatefulWidget {
   });
 
   @override
-  State<PersonCard> createState() => _PersonCardState();
-}
-
-class _PersonCardState extends State<PersonCard> {
-  @override
   Widget build(BuildContext context) {
-    final String? info = widget.info;
-    final links = widget.links;
     final List<Map> uris = [];
     if (links != null) {
-      for (final String key in links.keys) {
-        uris.add({'text': key, 'link': Uri.parse(links[key]!)});
+      for (final String key in links!.keys) {
+        uris.add({'text': key, 'link': Uri.parse(links![key]!)});
       }
     }
     return SingleChildScrollView(
-      child: buildCard(
+      child: SizedBox(
         width: 1000.0,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          spacing: 36,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              spacing: 18,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(9),
-                  child: Image.asset(
-                    widget.image,
-                    width: MediaQuery.of(context).size.width / 6,
-                  ),
-                ),
-                if (info != null) Text(info, textAlign: TextAlign.left),
-                if (uris.isNotEmpty)
-                  Column(
-                    children: List.generate(
-                      uris.length,
-                      (index) => InkWell(
-                        child: Text(uris[index]['text'], style: Styles.note),
-                        onTap: () => launchUrl(uris[index]['link']),
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.title,
-                    style: Styles.header,
-                    textAlign: TextAlign.left,
-                  ),
-                  const Divider(),
-                  Text(widget.body),
-                ],
+        child: ExpansionTile(
+          initiallyExpanded: true,
+          maintainState: false,
+          showTrailingIcon: false,
+          title: const SizedBox.shrink(),
+          subtitle: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            spacing: 36,
+            children: [
+              ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(9.0)),
+                child: Image.asset(image, width: 147.0),
               ),
+              Text(title, style: Styles.header),
+            ],
+          ),
+          children: [
+            const Divider(),
+            Row(
+              spacing: 36,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  spacing: 21,
+                  children: [
+                    if (info != null) Text(info!, textAlign: TextAlign.end),
+                    if (uris.isNotEmpty)
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          for (final uri in uris)
+                            InkWell(
+                              child: Text(uri['text'], style: Styles.note),
+                              onTap: () => launchUrl(uri['link']),
+                            ),
+                        ],
+                      ),
+                  ],
+                ),
+                Expanded(child: Text(body)),
+              ],
             ),
           ],
         ),
@@ -95,13 +86,15 @@ class SkillsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return buildCard(
+    return SizedBox(
       width: 369.0,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ExpansionTile(
+        initiallyExpanded: true,
+        maintainState: true,
+        showTrailingIcon: false,
+        title: Text(title, style: Styles.header),
         children: [
-          Text(title, style: Styles.header),
-          const Divider(color: Colours.main),
+          const Divider(),
           Column(
             spacing: 9,
             children: [
@@ -121,12 +114,12 @@ class SkillsCard extends StatelessWidget {
   }
 }
 
-class EventCard extends StatefulWidget {
+class ExpCard extends StatelessWidget {
   final String event;
   final String role;
   final List<String> experiences;
 
-  const EventCard({
+  const ExpCard({
     super.key,
     required this.event,
     required this.role,
@@ -134,16 +127,7 @@ class EventCard extends StatefulWidget {
   });
 
   @override
-  State<EventCard> createState() => _EventCardState();
-}
-
-class _EventCardState extends State<EventCard> {
-  @override
   Widget build(BuildContext context) {
-    final List<Marker> markers = List.generate(
-      widget.experiences.length,
-      (index) => Marker.circle(child: Text(widget.experiences[index])),
-    );
     return Container(
       padding: EdgeInsetsGeometry.all(36),
       width: 527,
@@ -151,19 +135,21 @@ class _EventCardState extends State<EventCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Marker.event(child: Text(widget.event, style: Styles.header)),
-          const Divider(color: Colours.mainShade),
+          Marker.event(child: Text(event, style: Styles.header)),
+          const Divider(),
           Row(
             children: [
               SizedBox(width: 18),
-              Text(widget.role, style: Styles.note),
+              Text(role, style: Styles.note),
             ],
           ),
           SizedBox(height: 18),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 9,
-            children: markers,
+            children: [
+              for (final exp in experiences) Marker.circle(child: Text(exp)),
+            ],
           ),
         ],
       ),
@@ -171,7 +157,7 @@ class _EventCardState extends State<EventCard> {
   }
 }
 
-class ProjectCard extends StatefulWidget {
+class ProjectCard extends StatelessWidget {
   final String title;
   final String body;
   final String image;
@@ -188,54 +174,55 @@ class ProjectCard extends StatefulWidget {
   });
 
   @override
-  State<ProjectCard> createState() => _ProjectCardState();
-}
-
-class _ProjectCardState extends State<ProjectCard> {
-  @override
   Widget build(BuildContext context) {
-    final List<String>? screenshotsAssets = widget.screenshots;
-    final List<ClipRRect> screenshots = screenshotsAssets == null
-        ? []
-        : List.generate(
-            screenshotsAssets.length,
-            (index) => ClipRRect(
-              borderRadius: BorderRadius.circular(9),
-              child: Image.asset(screenshotsAssets[index], width: 181),
-            ),
-          );
-    final links = widget.links;
     final List<Map> uris = [];
     if (links != null) {
-      for (final String key in links.keys) {
-        uris.add({'text': key, 'link': Uri.parse(links[key]!)});
+      for (final String key in links!.keys) {
+        uris.add({'text': key, 'link': Uri.parse(links![key]!)});
       }
     }
     return SingleChildScrollView(
-      child: buildCard(
+      child: SizedBox(
         width: 1000.0,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          spacing: 18,
+        child: ExpansionTile(
+          initiallyExpanded: false,
+          maintainState: false,
+          showTrailingIcon: false,
+          title: const SizedBox.shrink(),
+          subtitle: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            spacing: 36,
+            children: [
+              ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(9.0)),
+                child: Image.asset(image, height: 200.0),
+              ),
+              SizedBox(width: 333.0, child: Text(title, style: Styles.header)),
+            ],
+          ),
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               spacing: 36,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(9),
-                  child: Image.asset(widget.image, height: 200),
-                ),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(widget.title, style: Styles.header),
-                      if (screenshots.isNotEmpty)
-                        GalleryView.shots(children: screenshots),
-                      //if (links != null) Text(links, style: Styles.note),
+                      if (screenshots != null && screenshots!.isNotEmpty)
+                        GalleryView.shots(
+                          children: screenshots!
+                              .map(
+                                (screenshot) => ClipRRect(
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(9.0),
+                                  ),
+                                  child: Image.asset(screenshot, width: 181.0),
+                                ),
+                              )
+                              .toList(),
+                        ),
                       if (uris.isNotEmpty)
                         Row(
                           spacing: 30,
@@ -255,7 +242,8 @@ class _ProjectCardState extends State<ProjectCard> {
                 ),
               ],
             ),
-            Text(widget.body, style: Styles.description),
+            const Divider(),
+            Text(body, style: Styles.description),
           ],
         ),
       ),

@@ -15,7 +15,7 @@ class ExperiencePage extends StatelessWidget {
             spacing: 36,
             runSpacing: 36,
             children: [
-              EventCard(
+              ExpCard(
                 event: 'Ctrl+Alt+Disinfo',
                 role: 'Game Development, Music',
                 experiences: [
@@ -24,7 +24,7 @@ class ExperiencePage extends StatelessWidget {
                   'Worked with the team.',
                 ],
               ),
-              EventCard(
+              ExpCard(
                 event: 'Snappy Gurus Game Off',
                 role: 'Game Development, Music',
                 experiences: [
@@ -33,7 +33,7 @@ class ExperiencePage extends StatelessWidget {
                   'Worked with the team.',
                 ],
               ),
-              EventCard(
+              ExpCard(
                 event: 'Global Game Jam 2024',
                 role: 'Game Development, Music',
                 experiences: [
@@ -42,7 +42,7 @@ class ExperiencePage extends StatelessWidget {
                   'Worked with the team.',
                 ],
               ),
-              EventCard(
+              ExpCard(
                 event: 'Global Game Jam 2023',
                 role: '2D Art, 2D Animation, Music',
                 experiences: [

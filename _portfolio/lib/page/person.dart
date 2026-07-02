@@ -27,7 +27,7 @@ class PersonPage extends StatelessWidget {
               ),
               PersonCard(
                 title: 'Oie gentil',
-                body: 'assets/image/avatar/My.jpg',
+                body: 'Member of the Gentlegoose team.',
                 image: 'assets/image/avatar/My.jpg',
                 links: {
                   'link':

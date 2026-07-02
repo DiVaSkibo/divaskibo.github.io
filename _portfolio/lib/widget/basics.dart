@@ -1,15 +1,5 @@
 import 'package:_portfolio/tools.dart';
 
-Widget buildCard({double? width, required Widget child}) => Container(
-  padding: const EdgeInsetsGeometry.all(36.0),
-  width: width,
-  decoration: const BoxDecoration(
-    borderRadius: BorderRadius.all(Radius.circular(12.0)),
-    color: Colours.main,
-  ),
-  child: child,
-);
-
 Widget buildLevel(Level level) => Container(
   padding: EdgeInsetsGeometry.symmetric(horizontal: 10, vertical: 1),
   decoration: BoxDecoration(
