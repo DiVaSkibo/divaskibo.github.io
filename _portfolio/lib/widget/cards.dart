@@ -4,6 +4,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:_portfolio/tools.dart';
 import 'package:_portfolio/widget/basics.dart';
 
+/// #### person card widget
+/// CV person information viewer
 class PersonCard extends StatelessWidget {
   final String name;
   final String avatar;
@@ -116,9 +118,11 @@ class PersonCard extends StatelessWidget {
   }
 }
 
+/// #### skills card widget
+/// CV person skills viewer
 class SkillsCard extends StatelessWidget {
   final String title;
-  final Map<String, Level?> skills;
+  final Map<String, Leveling?> skills;
 
   const SkillsCard({super.key, required this.title, required this.skills});
 
@@ -152,6 +156,8 @@ class SkillsCard extends StatelessWidget {
   }
 }
 
+/// #### experience card widget
+/// CV person experience viewer
 class ExpCard extends StatelessWidget {
   final String event;
   final String role;
@@ -195,6 +201,8 @@ class ExpCard extends StatelessWidget {
   }
 }
 
+/// #### project card widget
+/// CV person project viewer
 class ProjectCard extends StatelessWidget {
   final String title;
   final String body;

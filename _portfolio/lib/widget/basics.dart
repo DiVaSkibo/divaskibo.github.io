@@ -1,6 +1,6 @@
 import 'package:_portfolio/tools.dart';
 
-Widget buildLevel(Level level) => Container(
+Widget buildLevel(Leveling level) => Container(
   padding: EdgeInsetsGeometry.symmetric(horizontal: 10, vertical: 1),
   decoration: BoxDecoration(
     borderRadius: BorderRadius.circular(18),

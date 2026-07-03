@@ -16,7 +16,16 @@ class SkillsPage extends StatelessWidget {
             runSpacing: 36,
             children: [
               SkillsCard(
-                title: 'Soft skills :',
+                title: 'Languages',
+                skills: {
+                  'English': LanguageLevel.intermediate,
+                  'Ukrainian': LanguageLevel.fluent,
+                  'Russian': LanguageLevel.upperIntermediate,
+                  'Polish': LanguageLevel.elementary,
+                },
+              ),
+              SkillsCard(
+                title: 'Soft skills',
                 skills: {
                   'Creativity': null,
                   'Problem-solving': null,
@@ -28,29 +37,33 @@ class SkillsPage extends StatelessWidget {
                 },
               ),
               SkillsCard(
-                title: 'Hard skills :',
+                title: 'Hard skills',
                 skills: {
-                  'C++': Level.expert,
-                  'C#': Level.intermediate,
-                  'Python': Level.advanced,
-                  'Swift': Level.beginner,
-                  'Kotlin': Level.beginner,
-                  'HTML': Level.advanced,
-                  'CSS': Level.advanced,
-                  'JavaScript': Level.intermediate,
-                  'Dart': Level.advanced,
-                  'Flutter': Level.advanced,
-                  'GodotScript': Level.expert,
-                  'Git': Level.advanced,
-                },
-              ),
-              SkillsCard(
-                title: 'Languages :',
-                skills: {
-                  'Ukrainian': Level.fluent,
-                  'English': Level.intermediate,
-                  'Russian': Level.upperIntermediate,
-                  'Polish': Level.intermediate,
+                  'c++': HardLevel.expert,
+                  'c#': HardLevel.advanced,
+                  'python': HardLevel.advanced,
+                  'Swift': HardLevel.beginner,
+                  'Kotlin': HardLevel.beginner,
+                  'Dart': HardLevel.guru,
+                  'Rust': HardLevel.beginner,
+                  'HTML': HardLevel.intermediate,
+                  'CSS': HardLevel.intermediate,
+                  'JavaScript': HardLevel.intermediate,
+                  'TypeScript': HardLevel.beginner,
+                  'GodotScript': HardLevel.guru,
+                  'gleam': HardLevel.beginner,
+
+                  'SQL': HardLevel.intermediate,
+                  'NoSQL': HardLevel.advanced,
+                  'Firebase': HardLevel.advanced,
+
+                  'raylib': HardLevel.intermediate,
+                  'CustomTkinter': HardLevel.advanced,
+                  'Flutter': HardLevel.advanced,
+                  'Godot': HardLevel.expert,
+                  'Unity': HardLevel.beginner,
+
+                  'git': HardLevel.advanced,
                 },
               ),
             ],

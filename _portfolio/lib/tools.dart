@@ -1,35 +1,64 @@
 import 'package:flutter/material.dart';
 export 'package:flutter/material.dart';
 
-enum Level {
+mixin Leveling on Enum {
+  String get label;
+  Color get colour;
+}
+
+enum LanguageLevel with Leveling {
   beginner,
   elementary,
   intermediate,
   upperIntermediate,
   advanced,
-  expert,
-  fluent,
-  guru;
+  proficient,
+  fluent;
 
+  @override
   String get label => switch (this) {
     beginner => 'Beginner',
     elementary => 'Elementary',
     intermediate => 'Intermediate',
     upperIntermediate => 'Upper-Intermediate',
     advanced => 'Advanced',
-    expert => 'Expert',
-    guru => 'Guru',
+    proficient => 'Proficient',
     fluent => 'Fluent',
   };
+  @override
   Color get colour => switch (this) {
-    beginner => Colours.beginner,
-    elementary => Colours.elementary,
-    intermediate => Colours.intermediate,
-    upperIntermediate => Colours.upperIntermediate,
-    advanced => Colours.advanced,
-    expert => Colours.expert,
-    guru => Colours.guru,
-    fluent => Colours.fluent,
+    beginner => Colours.veryLow,
+    elementary => Colours.low,
+    intermediate => Colours.medium,
+    upperIntermediate => Colours.high,
+    advanced => Colours.veryHigh,
+    proficient => Colours.peak,
+    fluent => Colours.peak,
+  };
+}
+
+enum HardLevel with Leveling {
+  beginner,
+  intermediate,
+  advanced,
+  expert,
+  guru;
+
+  @override
+  String get label => switch (this) {
+    beginner => 'Beginner',
+    intermediate => 'Intermediate',
+    advanced => 'Advanced',
+    expert => 'Expert',
+    guru => 'Guru',
+  };
+  @override
+  Color get colour => switch (this) {
+    beginner => Colours.veryLow,
+    intermediate => Colours.low,
+    advanced => Colours.medium,
+    expert => Colours.high,
+    guru => Colours.veryHigh,
   };
 }
 
@@ -90,14 +119,12 @@ abstract final class Colours {
   static const Color notation = Color(0xFF_6784A1);
   static const Color notationKid = Color(0xFF_7A67A1);
 
-  static const Color beginner = Color(0xFF_FFA64D);
-  static const Color elementary = Color(0xFF_E1FF4C);
-  static const Color intermediate = Color(0xFF_E1FF4C);
-  static const Color upperIntermediate = Color(0xFF_4CFF6A);
-  static const Color advanced = Color(0xFF_4CFFFF);
-  static const Color expert = Color(0xFF_4CFF6A);
-  static const Color guru = Color(0xFF_FF4DA6);
-  static const Color fluent = Color(0xFF_FF4DA6);
+  static const Color veryLow = Color(0xFF_FFA64D);
+  static const Color low = Color(0xFF_E1FF4C);
+  static const Color medium = Color(0xFF_4CFF6A);
+  static const Color high = Color(0xFF_4CFFFF);
+  static const Color veryHigh = Color(0xFF_6A4CFF);
+  static const Color peak = Color(0xFF_FF4DA6);
 
   const Colours._();
 }
