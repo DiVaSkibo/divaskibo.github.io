@@ -29,7 +29,10 @@ class PersonCard extends StatelessWidget {
   );
   Widget _buildAbout() => SelectableText(about);
   Widget? _buildInfo() => info != null
-      ? SelectableText(info!, style: Styles.note, textAlign: TextAlign.end)
+      ? TextButton(
+          onPressed: () {},
+          child: SelectableText(info!, textAlign: TextAlign.end),
+        )
       : null;
   Widget? _buildLinks() => links != null
       ? Column(
@@ -126,6 +129,18 @@ class SkillsCard extends StatelessWidget {
 
   const SkillsCard({super.key, required this.title, required this.skills});
 
+  List<Widget> _buildSkills() => skills.entries
+      .map(
+        (skill) => Row(
+          children: [
+            SelectableText(skill.key),
+            const Spacer(),
+            if (skill.value != null) buildLevel(skill.value!),
+          ],
+        ),
+      )
+      .toList();
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -134,22 +149,10 @@ class SkillsCard extends StatelessWidget {
         initiallyExpanded: true,
         maintainState: true,
         showTrailingIcon: false,
-        title: Text(title, style: Styles.header),
+        title: SelectableText(title, style: Styles.header),
         children: [
           const Divider(),
-          Column(
-            spacing: 9,
-            children: [
-              for (final skill in skills.entries)
-                Row(
-                  children: [
-                    Text(skill.key),
-                    const Spacer(),
-                    if (skill.value != null) buildLevel(skill.value!),
-                  ],
-                ),
-            ],
-          ),
+          Column(spacing: 6, children: _buildSkills()),
         ],
       ),
     );
@@ -159,40 +162,82 @@ class SkillsCard extends StatelessWidget {
 /// #### experience card widget
 /// CV person experience viewer
 class ExpCard extends StatelessWidget {
-  final String event;
-  final String role;
-  final List<String> experiences;
+  final String experience;
+  final IconData icon;
+  final String? details;
+  final String? author;
+  final String? description;
+  final List<String>? achievements;
 
   const ExpCard({
     super.key,
-    required this.event,
-    required this.role,
-    required this.experiences,
+    required this.experience,
+    required this.icon,
+    this.details,
+    this.author,
+    this.description,
+    this.achievements,
   });
+
+  const ExpCard.certificate({
+    super.key,
+    required this.experience,
+    this.details,
+    this.author,
+    this.description,
+  }) : icon = Icons.workspace_premium,
+       achievements = null;
+  const ExpCard.event({
+    super.key,
+    required this.experience,
+    this.details,
+    this.author,
+    this.description,
+    this.achievements,
+  }) : icon = Icons.emoji_events;
+
+  Widget _buildExperience() => SelectableText(experience, style: Styles.header);
+  Widget? _buildDetails() => details != null
+      ? TextButton(onPressed: () {}, child: SelectableText(details!))
+      : null;
+  Widget? _buildDescription() =>
+      description != null ? SelectableText(description!) : null;
+  List<Widget>? _buildAchievements() => achievements
+      ?.map(
+        (achieve) => ListTile(
+          minTileHeight: 0.0,
+          minVerticalPadding: 0.0,
+          horizontalTitleGap: 18.0,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 12.0),
+          leading: const Icon(Icons.gesture),
+          subtitle: SelectableText(achieve),
+        ),
+      )
+      .toList();
+  Widget? _buildAuthor() => author != null
+      ? TextButton(onPressed: () {}, child: SelectableText(author!))
+      : null;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsetsGeometry.all(36),
-      width: 527,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return SizedBox(
+      width: 606.0,
+      child: ExpansionTile(
+        initiallyExpanded: false,
+        maintainState: false,
+        showTrailingIcon: false,
+        expandedCrossAxisAlignment: CrossAxisAlignment.center,
+        leading: Icon(icon, size: 36),
+        title: _buildExperience(),
+        subtitle: _buildDetails(),
         children: [
-          Marker.event(child: Text(event, style: Styles.header)),
           const Divider(),
-          Row(
-            children: [
-              SizedBox(width: 18),
-              Text(role, style: Styles.note),
-            ],
-          ),
-          SizedBox(height: 18),
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 9,
+            spacing: 6,
             children: [
-              for (final exp in experiences) Marker.circle(child: Text(exp)),
+              ?_buildDescription(),
+              ...?_buildAchievements(),
+              ?_buildAuthor(),
             ],
           ),
         ],

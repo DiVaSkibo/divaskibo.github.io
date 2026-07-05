@@ -47,7 +47,7 @@ class _AppState extends State<App> with SingleTickerProviderStateMixin {
         iconTheme: IconThemeData(color: Colors.white),
         buttonTheme: ButtonThemeData(buttonColor: Colours.accentKid),
         dividerTheme: DividerThemeData(
-          thickness: 2,
+          thickness: 3,
           color: _kid ? Colours.mainShadeKid : Colours.mainShade,
         ),
         iconButtonTheme: IconButtonThemeData(
@@ -57,12 +57,28 @@ class _AppState extends State<App> with SingleTickerProviderStateMixin {
             ),
           ),
         ),
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            foregroundColor: WidgetStatePropertyAll(
+              _kid ? Colours.notationKid : Colours.notation,
+            ),
+            textStyle: WidgetStatePropertyAll(
+              TextStyle(
+                fontFamily: Fonts.basic,
+                fontWeight: FontWeight.w600,
+                fontStyle: FontStyle.italic,
+                fontSize: 18,
+              ),
+            ),
+          ),
+        ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: _kid ? Colours.mainShadeKid : Colours.mainShade,
           foregroundColor: _kid ? Colours.accentKid : Colours.accent,
         ),
         listTileTheme: ListTileThemeData(
           contentPadding: const EdgeInsetsGeometry.symmetric(horizontal: 36.0),
+          iconColor: _kid ? Colours.accentKid : Colours.accent,
         ),
         expansionTileTheme: ExpansionTileThemeData(
           expandedAlignment: Alignment.center,
@@ -81,6 +97,8 @@ class _AppState extends State<App> with SingleTickerProviderStateMixin {
           ),
           collapsedBackgroundColor: _kid ? Colours.mainKid : Colours.main,
           backgroundColor: _kid ? Colours.mainKid : Colours.main,
+          collapsedIconColor: _kid ? Colours.accentKid : Colours.accent,
+          iconColor: _kid ? Colours.accentKid : Colours.accent,
         ),
       ),
       home: Scaffold(

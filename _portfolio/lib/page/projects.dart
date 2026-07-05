@@ -9,7 +9,7 @@ class ProjectsPage extends StatelessWidget {
     return const SingleChildScrollView(
       child: Center(
         child: Padding(
-          padding: EdgeInsetsGeometry.all(36),
+          padding: EdgeInsetsGeometry.all(36.0),
           child: Column(
             spacing: 36,
             children: [

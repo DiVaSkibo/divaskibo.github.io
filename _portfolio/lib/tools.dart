@@ -102,6 +102,7 @@ enum Linktype {
 abstract final class Fonts {
   static const String basic = 'Rubik';
   static const String caps = 'Rubik Mono One';
+  static const String glitch = 'Rubik Glitch';
   static const String shadow = 'Rubik Doodle Shadow';
 
   const Fonts._();
@@ -137,7 +138,7 @@ abstract final class Styles {
   );
   static const TextStyle header = TextStyle(
     fontFamily: Fonts.shadow,
-    fontSize: 45,
+    fontSize: 36,
   );
   static const TextStyle description = TextStyle(
     fontFamily: Fonts.basic,
