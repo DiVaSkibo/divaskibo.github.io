@@ -78,24 +78,43 @@ enum CVPage {
 }
 
 enum Linktype {
-  email,
-  telegram,
-  linkedin,
-  discord,
-  github,
-  itch,
+  youtube,
   music,
-  cosmos;
+  itch,
+  email,
+  jam,
+  github,
+  cosmos,
+  telegram,
+  source,
+  linkedin,
+  discord;
 
+  Color get colour => switch (this) {
+    youtube => Colours.peak,
+    music => Colours.peak,
+    itch => Colours.peak,
+    email => Colours.low,
+    jam => Colours.low,
+    github => Colours.medium,
+    cosmos => Colours.medium,
+    telegram => Colours.high,
+    source => Colours.high,
+    linkedin => Colours.veryHigh,
+    discord => Colours.veryHigh,
+  };
   IconData get icon => switch (this) {
+    youtube => Icons.video_collection,
+    music => Icons.music_note,
+    itch => Icons.sports_esports,
     email => Icons.email,
+    jam => Icons.emoji_events,
+    github => Icons.commit,
+    cosmos => Icons.auto_awesome,
     telegram => Icons.telegram,
+    source => Icons.remove_red_eye,
     linkedin => Icons.info,
     discord => Icons.discord,
-    github => Icons.commit,
-    itch => Icons.sports_esports,
-    music => Icons.music_note,
-    cosmos => Icons.auto_awesome,
   };
 }
 

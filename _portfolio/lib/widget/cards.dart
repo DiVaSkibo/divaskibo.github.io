@@ -52,7 +52,7 @@ class PersonCard extends StatelessWidget {
                     (entry) => !entry.value.contains('https://'),
                   ))
                     IconButton(
-                      icon: Icon(link.key.icon),
+                      icon: Icon(link.key.icon, color: link.key.colour),
                       onPressed: () =>
                           Clipboard.setData(ClipboardData(text: link.value)),
                     ),
@@ -71,7 +71,7 @@ class PersonCard extends StatelessWidget {
                     (entry) => entry.value.contains('https://'),
                   ))
                     IconButton(
-                      icon: Icon(link.key.icon),
+                      icon: Icon(link.key.icon, color: link.key.colour),
                       onPressed: () => launchUrl(Uri.parse(link.value)),
                     ),
                 ],
@@ -84,7 +84,7 @@ class PersonCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: SizedBox(
-        width: min<double>(MediaQuery.of(context).size.width - 72.0, 1000.0),
+        width: min<double>(1000.0, MediaQuery.of(context).size.width - 72.0),
         child: ExpansionTile(
           initiallyExpanded: true,
           maintainState: false,
@@ -249,94 +249,89 @@ class ExpCard extends StatelessWidget {
 /// #### project card widget
 /// CV person project viewer
 class ProjectCard extends StatelessWidget {
-  final String title;
-  final String body;
-  final String image;
+  final String name;
+  final String logo;
+  final String description;
   final List<String>? screenshots;
-  final Map<String, String>? links;
+  final Map<Linktype, String>? links;
 
   const ProjectCard({
     super.key,
-    required this.title,
-    required this.body,
-    required this.image,
+    required this.name,
+    required this.logo,
+    required this.description,
     this.screenshots,
     this.links,
   });
 
+  Widget _buildName() => SelectableText(name, style: Styles.header);
+  Widget _buildLogo() => ClipRRect(
+    borderRadius: const BorderRadius.all(Radius.circular(9.0)),
+    child: Image.asset(logo),
+  );
+  Widget _buildDescription() =>
+      SelectableText(description, style: Styles.description);
+  Widget? _buildScreenshots() => screenshots != null && screenshots!.isNotEmpty
+      ? SizedBox(
+          height: 300.0,
+          child: GalleryView(
+            axis: Axis.vertical,
+            force: 200.0,
+            images: screenshots!,
+          ),
+        )
+      : null;
+  Widget? _buildLinks() => links != null
+      ? Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          alignment: WrapAlignment.end,
+          runAlignment: WrapAlignment.end,
+          children: [
+            for (final link in links!.entries.where(
+              (entry) => entry.value.contains('https://'),
+            ))
+              IconButton(
+                icon: Icon(link.key.icon, color: link.key.colour),
+                onPressed: () => launchUrl(Uri.parse(link.value)),
+              ),
+          ],
+        )
+      : null;
+
   @override
   Widget build(BuildContext context) {
-    final List<Map> uris = [];
-    if (links != null) {
-      for (final String key in links!.keys) {
-        uris.add({'text': key, 'link': Uri.parse(links![key]!)});
-      }
-    }
-    return SingleChildScrollView(
-      child: SizedBox(
-        width: 1000.0,
-        child: ExpansionTile(
-          initiallyExpanded: false,
-          maintainState: false,
-          showTrailingIcon: false,
-          title: const SizedBox.shrink(),
-          subtitle: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            spacing: 36,
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(9.0)),
-                child: Image.asset(image, height: 200.0),
-              ),
-              SizedBox(width: 333.0, child: Text(title, style: Styles.header)),
-            ],
-          ),
+    return SizedBox(
+      width: min<double>(1000.0, MediaQuery.of(context).size.width - 72.0),
+      child: ExpansionTile(
+        initiallyExpanded: false,
+        maintainState: false,
+        showTrailingIcon: false,
+        title: const SizedBox.shrink(),
+        subtitle: Row(
+          spacing: 36,
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              spacing: 36,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (screenshots != null && screenshots!.isNotEmpty)
-                        GalleryView.shots(
-                          children: screenshots!
-                              .map(
-                                (screenshot) => ClipRRect(
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(9.0),
-                                  ),
-                                  child: Image.asset(screenshot, width: 181.0),
-                                ),
-                              )
-                              .toList(),
-                        ),
-                      if (uris.isNotEmpty)
-                        Row(
-                          spacing: 30,
-                          children: List.generate(
-                            uris.length,
-                            (index) => InkWell(
-                              child: Text(
-                                uris[index]['text'],
-                                style: Styles.note,
-                              ),
-                              onTap: () => launchUrl(uris[index]['link']),
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            const Divider(),
-            Text(body, style: Styles.description),
+            Expanded(flex: 13, child: _buildLogo()),
+            Expanded(flex: 36, child: _buildName()),
           ],
         ),
+        children: [
+          const Divider(),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 18,
+            children: [
+              if (screenshots != null && screenshots!.isNotEmpty ||
+                  links != null && links!.isNotEmpty)
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    children: [?_buildLinks(), ?_buildScreenshots()],
+                  ),
+                ),
+              Expanded(flex: 3, child: _buildDescription()),
+            ],
+          ),
+        ],
       ),
     );
   }

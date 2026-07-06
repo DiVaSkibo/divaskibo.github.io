@@ -12,7 +12,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> with SingleTickerProviderStateMixin {
-  bool _kid = false;
+  bool _kid = true;
   CVPage _currentPage = CVPage.person;
   late TabController _tabController;
 
@@ -133,6 +133,7 @@ class _AppState extends State<App> with SingleTickerProviderStateMixin {
                   _tabController.index = page.index;
                 },
                 floatyActionButton: FloatyActionButton(
+                  heroTag: 'btnKid',
                   size: 45.0,
                   mini: true,
                   foregroundColor: _kid ? Colours.accentKid : Colours.accent,
