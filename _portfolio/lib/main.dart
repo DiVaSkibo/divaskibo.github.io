@@ -72,6 +72,19 @@ class _AppState extends State<App> with SingleTickerProviderStateMixin {
             ),
           ),
         ),
+        filledButtonTheme: FilledButtonThemeData(
+          style: ButtonStyle(
+            visualDensity: VisualDensity(
+              vertical: VisualDensity.minimumDensity,
+            ),
+            padding: WidgetStatePropertyAll(
+              const EdgeInsetsGeometry.symmetric(horizontal: 10, vertical: 1),
+            ),
+            backgroundColor: WidgetStatePropertyAll(
+              _kid ? Colours.mainShadeKid : Colours.mainShade,
+            ),
+          ),
+        ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: _kid ? Colours.mainShadeKid : Colours.mainShade,
           foregroundColor: _kid ? Colours.accentKid : Colours.accent,

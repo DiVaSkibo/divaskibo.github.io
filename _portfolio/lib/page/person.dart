@@ -17,7 +17,7 @@ class PersonPage extends StatelessWidget {
                 name: 'Dmytro SKIBO',
                 avatar: 'assets/image/avatar/Me.jpg',
                 about:
-                    'Learn Computer Science in National Aerospace University - Kharkiv Aviation Institute. Faculty of Intelligent Control Systems. Department of Mathematical Modelling and Artificial Intelligence. I receive an increased scholarship for my high GPA in the student rankings.',
+                    'BSc in Computer Science\nNational Aerospace University "Kharkiv Aviation Institute"\nFaculty of Intelligent Control Systems\nDepartment of Mathematical Modelling and Artificial Intelligence\n\t•\tGraduated with a high GPA; consistently ranked at the top of the student list and awarded an increased merit scholarship;\n\t•\tSuccessfully defended Bachelor\'s thesis with an "Excellent" grade. ',
                 info: '16.12.2004\nKharkiv, Ukraine',
                 links: {
                   Linktype.email: 'pipaski0264@gmail.com',
@@ -31,7 +31,8 @@ class PersonPage extends StatelessWidget {
               PersonCard(
                 name: 'Oie gentil',
                 avatar: 'assets/image/avatar/My.jpg',
-                about: 'Member of the Gentlegoose team.',
+                about:
+                    'BSc in Computer Science\nNational Aerospace University "Kharkiv Aviation Institute"\n\t•\tSuccessfully defended a 3rd-year term project titled "Software Design of a Game using Godot Engine", earning an "Excellent" grade;\n\t•\t4+ years of practical experience in game development;\n\t•\tPossess hands-on experience across the full development pipeline, including programming (Godot), game design (Miro), audio production (FL Studio), and 2D art (Krita).',
                 links: {
                   Linktype.discord: '.empireofjapan',
                   Linktype.music: 'https://music.youtube.com/@zlo_ol2',

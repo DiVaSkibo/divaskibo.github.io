@@ -1,15 +1,11 @@
 import 'package:_portfolio/page/hero.dart';
 import 'package:_portfolio/tools.dart';
 
-Widget buildLevel(Leveling level) => Container(
-  padding: const EdgeInsetsGeometry.symmetric(horizontal: 10, vertical: 1),
-  decoration: const BoxDecoration(
-    borderRadius: BorderRadius.all(Radius.circular(18.0)),
-    color: Colours.mainShade,
-  ),
+Widget buildLevel(Leveling level) => FilledButton(
+  onPressed: () {},
   child: Text(
     level.label,
-    style: TextStyle(fontFamily: Fonts.caps, fontSize: 12, color: level.colour),
+    style: TextStyle(fontFamily: Fonts.caps, fontSize: 11, color: level.colour),
   ),
 );
 
